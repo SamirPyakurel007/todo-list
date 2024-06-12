@@ -100,8 +100,8 @@ ul li.checked::before{
   justify-content:center;
   align-items:center;
   position:absolute;
-  bottom:100px;
-  right:100px;
+  bottom:50px;
+  right:50px;
   background:#be2d0e;
   height:50px;
   width:50px;
@@ -190,4 +190,17 @@ ul li.checked::before{
 
 .remove{
   display:inline-block;
+}
+
+@media (max-width:600px){
+  .container{
+    border-radius:0;
+    height:100vh;
+    margin:0;
+  }
+  .add-task-icon{
+    position:absolute;
+    right:40px;
+    bottom:40px;
+  }
 }

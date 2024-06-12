@@ -9,6 +9,7 @@ addIcon.addEventListener('click',()=>{
   openTab.classList.add('open-tab');
   addButton.classList.add('remove');
   cross.classList.add('remove');
+  saveData();
 });
 
 cross.addEventListener('click',(e)=>{
@@ -18,6 +19,7 @@ cross.addEventListener('click',(e)=>{
     addButton.classList.remove('remove');
     cross.classList.remove('remove');
   }
+  saveData();
 },false);
 //----------------add-button------------
 
@@ -36,14 +38,17 @@ addButton.addEventListener('click',()=>{
     let span=document.createElement('span');
     span.innerHTML='\u00d7';
     list.appendChild(span);
+    saveData();
     if(description.value!==''){
       let para=document.createElement('p');
       para.innerHTML=description.value;
       list.appendChild(para);
+      saveData();
     }
   }
   taskName.value="";
   description.value="";
+  saveData();
 });
 
 let taskList=document.querySelector('.task-list');
@@ -51,8 +56,19 @@ let taskList=document.querySelector('.task-list');
 taskList.addEventListener('click', (e)=>{
   if(e.target.tagName==='LI' || e.target.tagName==='P'){
     e.target.classList.toggle('checked');
+    saveData();
   }else if(e.target.tagName==='SPAN'){
     e.target.parentElement.remove();
   }
+  saveData();
 }, false);
 
+function saveData(){
+  localStorage.setItem('data',taskList.innerHTML);
+}
+
+function showTask(){
+  taskList.innerHTML=localStorage.getItem('data');
+}
+
+showTask();
